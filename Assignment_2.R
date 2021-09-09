@@ -11,7 +11,7 @@ length(csv_files)
 df <- read.csv("./Data/wingspan_vs_mass.csv")
 
 #7 read first 5 lines
-head(df[1:5])
+head(df,n=5)
 
 #8 find any files that begin with the letter "b"
 list.files(path = "Data", pattern ="^b", recursive = TRUE )
@@ -19,7 +19,7 @@ list.files(path = "Data", pattern ="^b", recursive = TRUE )
 
 # I couldn't quite figure out the for-loops for 9 and 10 but this was my best shot
 #9 display first line of "b" files
-b <- list.files(path = "Data", pattern = "^b", recursive = TRUE)
+b <- list.files(path = "Data", pattern = "^b", recursive = TRUE, full.names = TRUE)
 for (i in 1:5) {
   b <- read_csv(file = b[i])
   print(head(b,1))
