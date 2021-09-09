@@ -26,8 +26,8 @@ for (i in 1:5) {
 }
 
 #10 display first line of all files that end in ".csv"
-for (i in 1:5) {
-  csv_files <- read_csv(file = csv_files[i])
-  print(head(df,1))
+for (i in csv_files) {
+  dat <- read.csv(i)
+  print(head(dat))
   
 }
