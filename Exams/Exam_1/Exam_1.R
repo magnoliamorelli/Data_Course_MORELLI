@@ -1,16 +1,18 @@
 library(tidyverse)
+options(scipen = 999) # gets rid of scientific notation
+
 
 #I
 covid_data <- read.csv("cleaned_covid_data.csv")
 
 #II
-A <- grepl("A", covid_data$Province_State)
+A <- grepl("^A", covid_data$Province_State)
 A_states <- covid_data[A,]
 
 #III
 ggplot(A_states, aes(x=Last_Update, y=Active)) +
   geom_point() +
-  geom_smooth(method = "lm") +
+  geom_smooth(se=FALSE) +
   facet_wrap(~Province_State, scales = "free")
 
 #IV
@@ -25,3 +27,12 @@ ggplot(state_max_fatality_rate, aes(x=reorder(Province_State,-Maximum_Fatality_R
   geom_col() +
   theme(axis.text.x = element_text(angle = 90)) +
   labs(x= "Region")
+
+covid_data %>% 
+  group_by(Last_Update) %>% 
+  summarize(Cumulative = sum(Deaths)) %>% 
+  ggplot(aes(x=Last_Update, y=Cumulative)) +
+  geom_point()
+ 
+  
+
