@@ -1,0 +1,9 @@
+Final Project
+
+My final project idea is to look at the temperatures in Antarctica over a period of time.
+I have a source here https://rmets.onlinelibrary.wiley.com/doi/full/10.1002/joc.6378
+This gives me mean temperatures from different stations in Antarctica over a period of 29 years and 4 different seasons.
+
+The data could look at comparing different stations means temps or different temps at different seasons.
+
+I have taken the data from the article and put it into an excel file
