@@ -66,3 +66,26 @@ glm(data = iris,
 
 
 
+# More modeling
+
+library(tidyverse)
+library(modelr)
+theme_set(theme_minimal())
+
+# do taller people earn more money?
+modelr::heights
+
+p <- heights %>% 
+  ggplot(aes(x=height,y=income)) +
+  geom_point()
+
+p + geom_smooth() # idunno, not conclusive
+
+# maybe other factors are important...
+p + geom_smooth(aes(color=sex))
+p + geom_smooth(aes(colors=marital))
+heights %>% 
+  ggplot(aes(x=education,y=income,color=sex)) +
+  geom_point() + geom_smooth()
+
+# okay, now build at least two models of income and compare them with rmse

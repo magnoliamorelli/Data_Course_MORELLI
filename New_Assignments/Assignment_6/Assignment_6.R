@@ -41,7 +41,8 @@ dat %>%
 p <- dat %>% 
   filter(substrate == "Itaconic Acid") %>% 
   group_by(dilution,sample_id,time) %>% 
-  summarise(Mean_Absorbance = mean(absorbance)) %>% 
+  summarise(Mean_Absorbance = mean(absorbance),
+            N = n()) %>% # this tells you how many replicates are in each grouping to get answer
   ggplot(aes(x=time,y=Mean_Absorbance, color=sample_id)) +
   geom_line() +
   facet_wrap(~dilution) +

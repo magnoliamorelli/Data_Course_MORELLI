@@ -126,3 +126,7 @@ full %>%
 
 ggsave("", width = 20, height = 10, dip = 100) # this will save plots, can change dimensions or into pdf, png etc
 
+
+
+
+# look at prepare_data.R to help show how to bring in multiple files

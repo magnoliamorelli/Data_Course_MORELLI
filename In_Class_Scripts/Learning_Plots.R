@@ -286,6 +286,28 @@ theme_set(theme_classic()) # will make it go back to normal
 library(ggmap)
 
 
+library(plotly)
+library(janitor)
+df <- read.csv("./Data/BioLog_Plate_Data.csv")
+
+colnames(df) <- make_clean_names(colnames(df))
+
+df <- df %>% 
+  pivot_longer(cols = c("hr_24","hr_48","hr_144"),
+               values_to = "absorbance",
+               names_to = "time",
+               names_prefix = "hr_",
+               names_transform = list(time=as.numeric))
+df <- df %>% 
+  filter(dat$dilution == 0.1) %>% 
+  mutate(type = case_when(sample_id == "Clear_Creek" ~ "water",
+                          sample_id == "Waste_Water" ~ "water",
+                          is.na(sample_id) ~ "NA",
+                          TRUE ~ "soil")) 
+p <- df %>% 
+  ggplot(aes(x=factor(time),y=absorbance,fill=sample_id))+
+  geom_boxplot()
+p
+ggplotly(p)
 
 
-  

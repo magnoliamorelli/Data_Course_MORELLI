@@ -9,4 +9,58 @@ The ggplot that I made is still from the last article that I mentioned in class.
 I have taken the data from the article and put it into an excel file
 
 
-test
+Use library(rvest) to help get data off website
+
+cntrl+shift+c will give us our investigator to give table data
+
+content <- read
+
+
+for reading excel files do librry(readxl)
+
+df <- read_xlsx
+
+can do read = "A2:C3" will just read those rows and such, can do sheets
+
+
+make data,R,and output files
+save each script as you go for a new one such as cleaning, then ...
+
+library(rvest)
+
+content <- read_html("https://www.sciencedirect.com/science/article/pii/S0038071710003998")
+content %>% html_nodes(xpath='html/body/div') %>% 
+  html_table()  ##this is making if I scrape##
+
+##if I make an excel##
+
+make data,R,and output files
+save each script as you go for a new one such as cleaning, then ...
+
+str_remove_all(df$c_n,pattern = "[^[:alnum:]]", "") ## this removes * from columns
+as.matrix(df) %>% heatmap()
+
+
+
+### how to make a new function
+
+remove_special <- function(x){str_remove_all(x,pattern = "[^[:alnum:]]", "")} %>%
+as.numeric
+
+
+df%>% map(remove_special) %>% ###map applies whatever to every column	
+as.data.frame()
+
+
+clean <- clean %>%
+select(-x1)
+row.names(clean) <- names(clean)
+
+as.matrix(clean) %>% heatmap()   ##this will create a map to what is most related
+
+## saving cleaned data
+write_csv("./Data/cleaned_test.csv")
+or
+saveRDS(clean,"./Data/cleaned_test.RDS") ## if saving large object will save it as kind of object
+
+save R script for each layer of the project,cleaning,explore_data,making plots, report
