@@ -56,6 +56,8 @@ badones <- which(names$names %in% Full$Country)
 names[-badones,]
 
 
+
+
 # Reads in Facts/Populations/Some other stuff?
 facts <- url %>% html_elements("p") %>% 
   html_text2()
