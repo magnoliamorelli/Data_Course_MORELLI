@@ -42,6 +42,8 @@ the_table[the_table$Country ==  "United States of America",]["Country"] <- "Unit
 the_table[the_table$Country ==  "Cabo Verde",]["Country"] <- "Cape Verde"
 the_table[the_table$Country ==  "Democratic Republic of the Congo",]["Country"] <- "Congo [Republic]"
 
+
+#####
 # Saving
 saveRDS(the_table, "First_Webpage/the_table.RDS")
 

@@ -54,7 +54,7 @@ df %>%
 # V
 # for some reason my glm isn't working but this is how I'd do it
 mod <- df %>% 
-  glm(formula = chemical ~ YearsSinceBurn*Concentration) 
+  glm(formula = chemical ~ YearsSinceBurn*Concentration, family = "binomial") 
 
 sig_values <- tidy(mod) %>% 
   filter(p.value < 0.05)

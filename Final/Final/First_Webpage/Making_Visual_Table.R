@@ -1,9 +1,13 @@
 # Load Packages
 library(tidyverse)
-library(gt)
+library(kableExtra)
 
+df <- readRDS("First_Webpage/the_table.RDS")
+
+#####
+# this is using package gt and makes for a very large image, use KableExtra
 # Making table
-the_table %>% gt() %>% 
+mytable <- the_table %>% gt() %>% 
   tab_header(
     title = "World Countries and Populations",
     subtitle = "Listed Alphabetically"
@@ -13,5 +17,14 @@ the_table %>% gt() %>%
 
 
 # Then export it out onto a website
-ggsave("First_Webpage/the_table.jpg", plot = last_plot()) # This is getting corrupted? Have tried a few files but none seem to be working
+gtsave(mytable,"First_Webpage/Populations.png") # This is getting corrupted? Have tried a few files but none seem to be working
+?gt
+
+#####
+
+pop <- kbl(df) %>%
+  kable_styling(bootstrap_options = "striped", full_width = F, position = "left") %>%
+  scroll_box(height = "300px") %>% 
+  kable_paper("hover", full_width=F) %>% 
+  save_kable("First_Webpage/table.html")
 
