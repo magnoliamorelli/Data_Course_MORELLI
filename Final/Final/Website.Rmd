@@ -1,0 +1,88 @@
+---
+title: "Web Scraping"
+author: "Magnolia Morelli"
+date: "12/6/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+ 
+I always found it difficult to find perfectly organized, clean data on online websites. Because of this I decided to learn how to scrape webpages for the specific things that I needed. Whatever table, paragraph, or hidden image I wanted, I could grab off and import into R studio. From there, I can better clean and rearrange the data to my specific needs, producing a perfect image or data frame.
+
+## The Basics
+
+The fist step in web scraping is reading in a webpage. This is done simply by: **read_html("webpage")**. Once a webpage is read in, you can begin gathering data. The easiest way to import any data is to search for tables within a website: **html_tables()**, this gives you an output of every table within a webpage that you can then search through. By specifying a table: **table <- tables[[1]]**, you can import an entire data set into R studio and begin your data manipulation.
+\
+\
+If you are searching though paragraphs or images for multiple, specific terms you must use an HTML element. By downloading a plug-in titled: **SelectorGadget**, you are able to highlight any part of a webpage and grab the CSS or XPath element. When scraping an HTML element, you must read it in through its "path". This allows R to scan an HTML document and look for the specific data that you want.
+\
+\
+\
+![](Images/SG_1.png)
+\
+\
+\
+If you are curious where these paths are located, you can inspect an element. This brings up the actual HTML website code.
+\
+\
+\
+![](Images/SG_2.png)
+
+## The First Webpage
+
+A typical website will have either a built "table", paragraph or a type of image explaining a certain topic. This is difficult to manipulate and gain any actual data from. My first website contained certain demographics about each world country. It looked a little like this:
+![https://www.worldometers.info/geography/alphabetical-list-of-countries/](Images/WS_1.png)
+\
+\
+From the combined techniques listed above, I was able to import a list of countries, populations, land area, and density as a data.frame into R stuido.
+\
+\
+The data that I collected from this webpage was in rough shape that required some cleaning and rearranging. Here is some code used:
+![](Images/SC_1.png)
+\
+\
+The end product of my first web scraping is a scroll table that can be saved as an HTML document and imported into any website or presentation with listed Country and 2020 populations:
+
+
+```{r echo=FALSE}
+htmltools::includeHTML("First_webpage/table.html")
+```
+
+## The Second Webpage
+
+I wanted to make a more interactive display of the previous list of countries and so I chose to create a map. To complete this task, I needed the latitude and longitude of every country. Scraping the below table, I imported this information into an R data frame.
+\
+\
+![https://developers.google.com/public-data/docs/canonical/countries_csv](Images/WS_2.png)
+\
+\
+Through R code of cleaning, combining, and creating, I was able to produce an interactive map of the world. This map allows you to view every country and when clicked upon, displays the 2020 populations.
+\
+\
+```{r}
+htmltools::includeHTML("Second_Webpage/map.html")
+```
+
+## The Third Webpage
+For my final push of learning web scraping, I wanted to be a little more creative. Scraping a list of the top most visited countries and tourist attractions I was able to create an interactive plot.
+\
+\
+The website with the above information was a little more tricky. Using the HTML inspector code, I was able to pinpoint the top visited countries within the websites map and scrape the data into R studio.
+![https://worldpopulationreview.com/country-rankings/most-visited-countries](Images/WS_3.png)
+\
+\
+This was then combined through R code with a second CSV file of top visited tourist attractions to create the below table. This graphs shows the amount of tourist arrivals and when each bar is hovered over, the top tourist attraction in each country.
+\
+\
+```{r echo=FALSE}
+htmltools::includeHTML("Fourth_webpage/p.html")
+```
+
+
+
+## Conclusion
+Not only was I able to master the art of web scraping but I also learned some valuable packages such as XML2, rvest, janitor, KableExtra, HTMLWidgets, plotly

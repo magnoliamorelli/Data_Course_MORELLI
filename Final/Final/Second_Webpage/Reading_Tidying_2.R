@@ -21,6 +21,6 @@ colnames(table2) <- c("Latitude", "Longitude", "Country")
 table2 <- table2 %>% 
   arrange(Country)
 
-
+#####
 # Saving
 saveRDS(table2, "Second_Webpage/table2.RDS")

@@ -3,10 +3,17 @@ library(tidyverse)
 library(leaflet) 
 library(rgdal)
 library(raster)
+library(htmlwidgets)
+
+
+
+full <- readRDS("Second_Webpage/full.RDS")
+?leaflet::addTiles
+?tileOptions()
 
 # Making map
 map <- leaflet::leaflet() %>% 
-  leaflet::addTiles() %>% 
+  leaflet::addTiles(options = tileOptions(noWrap = TRUE)) %>% 
   setView(lng = 90, lat =-180, zoom = 0) %>% # this seems to change map, trying to get so it doesn't repeat world
   leaflet::addProviderTiles(providers$Esri.WorldImagery, group = "Esri World Imagery") %>% 
   leaflet::addCircleMarkers(lng = full$Longitude,lat = full$Latitude, 
@@ -18,5 +25,9 @@ map <- leaflet::leaflet() %>%
                             options = layersControlOptions(collapsed=FALSE))
 
 map
+
+#####
+# Saving as Widget
+htmlwidgets::saveWidget(map, "Second_Webpage/map.html")
 
 
