@@ -28,6 +28,10 @@ map
 
 #####
 # Saving as Widget
+<<<<<<< HEAD
 htmlwidgets::saveWidget(map, "Second_Webpage/map.html")
 
+=======
+saveWidget(map, "Second_Webpage/map.html", selfcontained = FALSE)
+>>>>>>> bf11315d990e756552b343fbedbe726a19fc8ef6
 
